@@ -1,5 +1,4 @@
 from flask import Flask, request, jsonify
-import requests  # For making HTTP requests to Google Gemini (or equivalent AI API)
 import google.generativeai as genai
 
 
@@ -16,7 +15,7 @@ def process_message():
     data = request.get_json()
     message = data.get('message', '')
 
-    gemini_response = model.generate_content("What is 2+2, explain")
+    gemini_response = model.generate_content(message)
     # Logic to process the message
     response_message = f"Клим говорит: ответ на сообщение {gemini_response.text}"
 
