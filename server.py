@@ -11,9 +11,9 @@ def process_message():
     data = request.get_json()
     message = data.get('message', '')
     
-    response = model.generate_content(message)
+    #response = model.generate_content(message)
     # Logic to process the message
-    response_message = f"Клим говорит: {response}"
+    response_message = f"Клим говорит: ответ на сообщение "
 
     return jsonify({'response': response_message})
 
