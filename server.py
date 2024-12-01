@@ -11,9 +11,13 @@ def process_message():
     data = request.get_json()
     message = data.get('message', '')
     
-    #response = model.generate_content(message)
+    try:
+        response = model.generate_content("What is 2+2, explain")
+        response_message = f"Клим говорит: {response.text}"
+    except Exception as e:
+        return jsonify({'error': str(e)})
     # Logic to process the message
-    response_message = f"Клим говорит: ответ на сообщение "
+    
 
     return jsonify({'response': response_message})
 
