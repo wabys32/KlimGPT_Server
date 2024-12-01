@@ -17,7 +17,7 @@ def process_message():
 
     gemini_response = model.generate_content(message)
     # Logic to process the message
-    response_message = f"Клим говорит: ответ на сообщение {gemini_response.text}"
+    response_message = f"Клим говорит: {gemini_response.text}"
 
     return jsonify({'response': response_message})
 
