@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify
 import google.generativeai as genai
 import re
-from random import randint
+from random import *
 
 app = Flask(__name__)
 
@@ -17,9 +17,21 @@ def process_message():
     message = data.get('message', '')
     
     StathamPattern = r"т[еэ]тх[еэ]м"
-    StathamQuotes = ["First, Second"]
+    StathamQuotes = [
+                    "Судно знаешь? Я засудил", 
+                     "Тихий океан знаешь? Я усмирил", 
+                     "Соединённые Штаты знаешь? Я соединил", 
+                     "Мы должны оставаться мыми, а они – оними",
+                     "Если заблудился в лесу, иди домой",
+                     "В жизни всегда есть две дороги: одна — первая, а другая — вторая",
+                     "Делай, как надо. Как не надо, не делай",
+                     "Работа — это не волк. Работа — ворк. А волк — это ходить",
+                     "Марианскую впадину знаешь? Это я упал",
+                     "Не будьте эгоистами, в первую очередь думайте о себе!",
+                     "Работа не волк. Никто не волк. Только волк волк"
+                     ]
     if re.search(StathamPattern, message, re.IGNORECASE):
-        chosen_quote = StathamQuotes[0, randint(0, len(StathamQuotes)-1)]
+        chosen_quote = StathamQuotes[randint(0, len(StathamQuotes)-1)]
         return jsonify({'response': chosen_quote})
 
     
