@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify
 import google.generativeai as genai
-
+import re
 
 app = Flask(__name__)
 
@@ -17,11 +17,10 @@ def process_message():
 
     gemini_response = model.generate_content(message)
     response = gemini_response.text
-    formatted_response = response.replace('*', '<br>*')
-    formatted_response = formatted_response.replace('**', '<b>').replace('<b>', '</b>', 1)
-    formatted_response = formatted_response.replace('<br>* ', '<br>') 
+    response = re.sub(r"\*\*(.*?)\*\*", r"<b>\1</b>", response)
+    response = re.sub(r"(?<!\*)\*(?!\*)", "<br>", response)
     # Logic to process the message
-    response_message = f"Клим говорит: {formatted_response}"
+    response_message = f"Клим говорит: {response}"
 
     return jsonify({'response': response_message})
 
