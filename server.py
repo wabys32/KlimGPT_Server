@@ -16,7 +16,7 @@ def process_message():
     message = data.get('message', '')
 
     gemini_response = model.generate_content(message)
-    response = formatted_response.text
+    response = gemini_response.text
     formatted_response = response.replace('*', '<br>*')
     formatted_response = formatted_response.replace('**', '<b>').replace('<b>', '</b>', 1)
     formatted_response = formatted_response.replace('<br>* ', '<br>') 
