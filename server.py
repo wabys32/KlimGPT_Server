@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 import google.generativeai as genai
 import re
+from random import randint
 
 app = Flask(__name__)
 
@@ -14,7 +15,14 @@ model = genai.GenerativeModel("gemini-1.5-flash")
 def process_message():
     data = request.get_json()
     message = data.get('message', '')
+    
+    StathamPattern = r"т[еэ]тх[еэ]м"
+    StathamQuotes = ["First, Second"]
+    if re.search(StathamPattern, message, re.IGNORECASE):
+        chosen_quote = StathamQuotes[0, randint(0, len(StathamQuotes)-1)]
+        return jsonify({'response': chosen_quote})
 
+    
     gemini_response = model.generate_content(message)
     response = gemini_response.text
     response = re.sub(r"\*\*(.*?)\*\*", r"<b>\1</b>", response)
