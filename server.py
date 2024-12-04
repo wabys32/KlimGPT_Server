@@ -34,6 +34,15 @@ def process_message():
         chosen_quote = StathamQuotes[randint(0, len(StathamQuotes)-1)]
         return jsonify({'response': chosen_quote})
 
+    Patterns2 = r"о себе"
+    Patterns2Answers = [
+                        "Когда я захожу в зал тренажёр делает отжимания",
+                        "Когда я открываю окно, окно становится прохлодным",
+                        "ө"
+                     ]
+    if re.search(Patterns2, message, re.IGNORECASE):
+        return jsonify({'response': Patterns2Answers[randint(0, len(Pattern2Answers)-1)]})
+
     
     gemini_response = model.generate_content(message)
     response = gemini_response.text
