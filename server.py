@@ -44,6 +44,23 @@ def process_message():
         chosen_quote = Patterns2Answers[randint(0, len(Patterns2Answers)-1)]
         return jsonify({'response': chosen_quote})
 
+    Patterns3 = r"предск"
+    Patterns3Answers = [
+                        "Да",
+                        "Нет",
+                        "Возможно",
+                        "Да нет наверное",
+                        "Определённо нет",
+                        "Определённо да",
+                        "В принципе можно",
+                        "В принципе можно",
+                        "В принципе можно",
+                        "В принципе можно",
+                        "Не будем исключать"
+                     ]
+    if re.search(Patterns3, message, re.IGNORECASE):
+        chosen_quote = Patterns3Answers[randint(0, len(Patterns3Answers)-1)]
+        return jsonify({'response': chosen_quote})
     
     gemini_response = model.generate_content(message)
     response = gemini_response.text
