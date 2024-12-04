@@ -42,7 +42,7 @@ def process_message():
                      ]
     if re.search(Patterns2, message, re.IGNORECASE):
         chosen_quote = Patterns2Answers[randint(0, len(Patterns2Answers)-1)]
-        return jsonify({'response': })
+        return jsonify({'response': chosen_quote})
 
     
     gemini_response = model.generate_content(message)
