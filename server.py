@@ -42,7 +42,13 @@ def process_message():
     # Logic to process the message
     response_message = f"Клим говорит: {response}"
 
-    return jsonify({'response': response_message})
+    potomus = ["Потому что", "Покачену", "Вот так вот", "Вопросы?", "А ну в общем значит слушай значит смотри значит в общем слушай это самое мда", "Я тебе запрещаю задовать вопросы.", "ъуъ", "ъ", "🤌🏻🤌🏻", "Я в пориже хажу по магазинчикам, иду в эльфифу башню чтобы съесть qroissant"]
+    potomu = randint(1,2)
+    msg = potomus[randint(0, len(potomus)-1)]
+    if potomu == 1:
+        return jsonify({'response': response_message})
+    else:
+        return jsonify({'response': msg})
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
